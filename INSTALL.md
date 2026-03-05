@@ -32,7 +32,7 @@ The **Dynamic Skills System** adds **60 pre-configured skills** to your OpenClaw
 
 You need:
 - ✅ OpenClaw installed and running
-- ✅ PostgreSQL 16+ (tested on 18) installed (tested on PostgreSQL 18)
+- ✅ PostgreSQL 18 installed
 - ✅ pgvector extension installed
 - ✅ Python 3.9+ installed
 - ✅ Redis (optional, for caching)
@@ -85,7 +85,7 @@ redis-cli ping
 brew install postgresql@18
 
 # Or PostgreSQL 16 (minimum supported)
-brew install postgresql@16
+brew install postgresql@18
 
 # Install Redis
 brew install redis
