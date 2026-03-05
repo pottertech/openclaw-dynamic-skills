@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pottertech/arty-backup.git"
+    "url": "https://github.com/pottertech/openclaw-dynamic-skills.git"
   },
   "keywords": [
     "ai",
@@ -32,10 +32,10 @@
     "status": "production"
   },
   "stats": {
-    "total_skills": 46,
-    "categories": 18,
-    "total_chunks": 100,
-    "database_size_mb": 5
+    "total_skills": 60,
+    "categories": 25,
+    "total_chunks": 150,
+    "database_size_mb": 9
   },
   "categories": [
     "Anthropic Original",
@@ -49,7 +49,19 @@
     "Developer Tools",
     "Business Operations",
     "Creative Workflows",
-    "Music Generation"
+    "Music Generation",
+    "Engineering",
+    "Video Production",
+    "Social Media",
+    "Diagrams & Wireframes",
+    "Docker & Deployment",
+    "Analytics",
+    "Backup & Sync",
+    "Monitoring & Alerts",
+    "Cost Optimization",
+    "Project Management",
+    "Calendar Management",
+    "SEO & Content"
   ],
   "features": [
     "Semantic search with pgvector",
@@ -62,8 +74,9 @@
   ],
   "requirements": {
     "python": "3.10+",
-    "postgresql": "16+",
+    "postgresql": "16+ (tested on 18)",
     "pgvector": "0.2.4+",
-    "redis": "optional"
+    "redis": "optional",
+    "session_ids": "XID (20-char, time-sorted)"
   }
 }
