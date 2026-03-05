@@ -76,7 +76,6 @@
     "python": "3.10+",
     "postgresql": "18",
     "pgvector": "0.2.4+",
-    "redis": "optional",
-    "session_ids": "XID (20-char, time-sorted)"
+    "redis": "optional"
   }
 }

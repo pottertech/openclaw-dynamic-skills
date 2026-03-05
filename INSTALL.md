@@ -20,7 +20,6 @@ The **Dynamic Skills System** adds **60 pre-configured skills** to your OpenClaw
 - ✅ Redis caching (65x faster lookups)
 - ✅ Auto-router integration
 - ✅ Usage analytics
-- ✅ XID session IDs (20-char, time-sorted)
 
 **Total:** 60 skills across 25+ categories
 
@@ -37,7 +36,6 @@ You need:
 - ✅ Python 3.9+ installed
 - ✅ Redis (optional, for caching)
 
-**Note:** This system uses **XID session IDs** (20-character, time-sorted) for efficient session tracking and compaction recovery.
 
 ### One-Command Installation
 
@@ -118,7 +116,6 @@ CREATE EXTENSION IF NOT EXISTS vector;
 \q
 ```
 
-**Note:** The system uses **XID session IDs** for session tracking. These are automatically generated when you import skills.
 
 ### Step 3: Run Installation
 
