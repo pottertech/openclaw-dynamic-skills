@@ -146,7 +146,7 @@ if [ -f "$SCRIPT_DIR/sql/import.sql" ]; then
     
     # Verify skill count
     SKILL_COUNT=$(psql -U "$DB_USER" -d "$SKILLS_DB" -t -c "SELECT COUNT(*) FROM skills WHERE status='active';" | tr -d ' ')
-    if [ "$SKILL_COUNT" -eq 49 ]; then
+    if [ "$SKILL_COUNT=60 ]; then
         print_success "Verified: $SKILL_COUNT skills imported"
     else
         print_warning "Expected 49 skills, found $SKILL_COUNT"

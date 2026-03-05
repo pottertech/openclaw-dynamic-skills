@@ -8,19 +8,21 @@
 
 ## 📋 What You're Installing
 
-The **Dynamic Skills System** adds **49 pre-configured skills** to your OpenClaw installation, enabling automatic skill loading based on natural language queries.
+The **Dynamic Skills System** adds **60 pre-configured skills** to your OpenClaw installation, enabling automatic skill loading based on natural language queries.
 
 **Includes:**
 - ✅ 17 Anthropic original skills
 - ✅ 25 Open Skills (community contributions)
 - ✅ 3 Custom engineering skills (architect, tester, developer)
 - ✅ 4 Custom media skills (ACE-Step, Kokoro, ComfyUI, business operations)
+- ✅ 11 Utility skills (video, social, docker, analytics, backup, monitoring, project, calendar, cost, SEO, excalidraw)
 - ✅ Semantic search with pgvector
 - ✅ Redis caching (65x faster lookups)
 - ✅ Auto-router integration
 - ✅ Usage analytics
+- ✅ XID session IDs (20-char, time-sorted)
 
-**Total:** 49 skills across 18 categories
+**Total:** 60 skills across 25+ categories
 
 ---
 
@@ -30,9 +32,12 @@ The **Dynamic Skills System** adds **49 pre-configured skills** to your OpenClaw
 
 You need:
 - ✅ OpenClaw installed and running
-- ✅ PostgreSQL 16+ installed
+- ✅ PostgreSQL 16+ (tested on 18) installed (tested on PostgreSQL 18)
+- ✅ pgvector extension installed
 - ✅ Python 3.9+ installed
 - ✅ Redis (optional, for caching)
+
+**Note:** This system uses **XID session IDs** (20-character, time-sorted) for efficient session tracking and compaction recovery.
 
 ### One-Command Installation
 
@@ -47,7 +52,7 @@ bash install.sh
 That's it! The installer will:
 1. Check prerequisites
 2. Create database
-3. Import all 49 skills
+3. Import all 60 skills
 4. Generate embeddings
 5. Start lookup service
 6. Verify installation
@@ -76,14 +81,24 @@ redis-cli ping
 
 **macOS:**
 ```bash
+# Install PostgreSQL 18 (recommended)
+brew install postgresql@18
+
+# Or PostgreSQL 16 (minimum supported)
 brew install postgresql@16
+
+# Install Redis
 brew install redis
+
+# Install pgvector
+brew install pgvector
 ```
 
 **Linux:**
 ```bash
 sudo apt-get install postgresql postgresql-contrib
 sudo apt-get install redis-server
+sudo apt-get install postgresql-18-pgvector  # Adjust version number
 ```
 
 ### Step 2: Install pgvector Extension
@@ -92,7 +107,7 @@ sudo apt-get install redis-server
 # Connect to PostgreSQL
 psql -U postgres
 
-# Enable pgvector
+# Enable pgvector (required for semantic search)
 CREATE EXTENSION IF NOT EXISTS vector;
 
 # Verify
@@ -102,6 +117,8 @@ CREATE EXTENSION IF NOT EXISTS vector;
 # Exit
 \q
 ```
+
+**Note:** The system uses **XID session IDs** for session tracking. These are automatically generated when you import skills.
 
 ### Step 3: Run Installation
 
@@ -114,7 +131,7 @@ bash install.sh
 1. ✅ Creates `skillsdb` database
 2. ✅ Enables pgvector extension
 3. ✅ Imports schema
-4. ✅ Imports all 49 skills
+4. ✅ Imports all 60 skills
 5. ✅ Generates embeddings
 6. ✅ Starts lookup service on port 8845
 7. ✅ Verifies installation
@@ -229,7 +246,7 @@ curl -X POST http://localhost:8845/skills/lookup \
 ├── sql/
 │   ├── import.sql            # Complete database import
 │   ├── schema.sql            # Database schema
-│   ├── skills_data.sql       # All 49 skills
+│   ├── skills_data.sql       # All 60 skills
 │   └── skill_chunks_data.sql # Chunk data
 ├── scripts/
 │   ├── import_skill.py       # Import single skill
@@ -420,7 +437,7 @@ LIMIT 7;
 
 ### Learn More
 
-- **Skill Catalog:** See `docs/SKILLS-CATALOG.md` for all 49 skills
+- **Skill Catalog:** See `docs/SKILLS-CATALOG.md` for all 60 skills
 - **API Reference:** See `docs/API-REFERENCE.md` for lookup service
 - **Best Practices:** See `docs/BEST-PRACTICES.md` for usage tips
 
@@ -465,7 +482,7 @@ LIMIT 7;
 After installation, verify:
 
 - [ ] Database created (`skillsdb`)
-- [ ] 49 skills imported
+- [ ] 60 skills imported
 - [ ] Embeddings generated
 - [ ] Lookup service running (port 8845)
 - [ ] Health check passes

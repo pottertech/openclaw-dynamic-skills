@@ -67,7 +67,7 @@ No manual skill lookup needed!
 ## 📚 Documentation
 
 - **INSTALL.md** - Complete installation guide
-- **docs/SKILLS-CATALOG.md** - All 49 skills listed
+- **docs/SKILLS-CATALOG.md** - All 60 skills listed
 - **README.md** - Full documentation
 
 ---
