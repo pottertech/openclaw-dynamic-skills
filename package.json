@@ -1,0 +1,69 @@
+{
+  "name": "dynamic-skills-system",
+  "version": "1.0.0",
+  "description": "Complete AI Skills Management System for OpenClaw",
+  "main": "services/lookup_service_v2.py",
+  "scripts": {
+    "install": "bash install.sh",
+    "start": "python3 services/lookup_service_v2.py",
+    "test": "curl http://localhost:8845/health",
+    "scan": "python3 scripts/skills_scanner.py --scan",
+    "import": "python3 scripts/import_skill.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pottertech/arty-backup.git"
+  },
+  "keywords": [
+    "ai",
+    "skills",
+    "openclaw",
+    "claude",
+    "agent",
+    "automation"
+  ],
+  "author": "Potter's Quill Media",
+  "license": "MIT",
+  "version_info": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "release_date": "2026-03-05",
+    "status": "production"
+  },
+  "stats": {
+    "total_skills": 46,
+    "categories": 18,
+    "total_chunks": 100,
+    "database_size_mb": 5
+  },
+  "categories": [
+    "Anthropic Original",
+    "Communication",
+    "Data & Search",
+    "Data Visualization",
+    "Database",
+    "Security & Privacy",
+    "APIs & Services",
+    "Crypto & Finance",
+    "Developer Tools",
+    "Business Operations",
+    "Creative Workflows",
+    "Music Generation"
+  ],
+  "features": [
+    "Semantic search with pgvector",
+    "Redis caching (65x faster)",
+    "Automatic skill discovery",
+    "Router integration",
+    "Usage analytics",
+    "Security-first design",
+    "100% local execution"
+  ],
+  "requirements": {
+    "python": "3.10+",
+    "postgresql": "16+",
+    "pgvector": "0.2.4+",
+    "redis": "optional"
+  }
+}
