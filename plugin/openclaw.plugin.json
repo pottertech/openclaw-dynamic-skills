@@ -1,0 +1,29 @@
+{
+  "id": "dynamic-skills",
+  "name": "Dynamic Skills",
+  "version": "1.0.0",
+  "entry": "dist/index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "baseUrl": { "type": "string" },
+      "apiKey": { "type": "string" },
+      "workspaceMode": {
+        "type": "string",
+        "enum": ["workspace", "managed"],
+        "default": "workspace"
+      },
+      "managedDir": { "type": "string" },
+      "workspaceSubdir": {
+        "type": "string",
+        "default": "skills/dynamic"
+      },
+      "maxActiveSkills": {
+        "type": "integer",
+        "minimum": 1,
+        "default": 12
+      }
+    },
+    "required": ["baseUrl"]
+  }
+}

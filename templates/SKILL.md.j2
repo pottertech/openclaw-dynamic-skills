@@ -1,0 +1,18 @@
+---
+name: {{ frontmatter.name or slug }}
+description: {{ frontmatter.description or description }}
+{% if frontmatter.tools %}tools:
+{% for tool in frontmatter.tools %}
+  - {{ tool }}
+{% endfor %}
+{% endif %}
+{% if frontmatter.metadata %}metadata:
+{% for key, value in frontmatter.metadata.items() %}
+  {{ key }}: {{ value | tojson }}
+{% endfor %}
+{% endif %}
+---
+
+# {{ title or name }}
+
+{{ body_markdown }}
