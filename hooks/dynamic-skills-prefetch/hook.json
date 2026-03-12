@@ -1,0 +1,5 @@
+{
+  "name": "dynamic-skills-prefetch",
+  "description": "Prefetches dynamic skills into the workspace when a session starts.",
+  "events": ["session.start"]
+}
