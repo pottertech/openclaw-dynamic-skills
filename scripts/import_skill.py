@@ -181,6 +181,7 @@ def normalize_metadata(metadata: Dict[str, Any], source_url: str) -> Dict[str, A
     - source information
     - risk_level (default: 1)
     - tags (extracted from name/description)
+    - reinforcement preference (default: preferred)
     """
     normalized = {
         'name': metadata.get('name', 'unknown'),
@@ -189,7 +190,8 @@ def normalize_metadata(metadata: Dict[str, Any], source_url: str) -> Dict[str, A
         'source_url': source_url,
         'user_invocable': metadata.get('user-invocable', True),
         'risk_level': 1,  # Default low risk
-        'tags': []
+        'tags': [],
+        'reinforcement': metadata.get('reinforcement', 'preferred')  # NEW: prompt reinforcement
     }
     
     # Extract tags from name

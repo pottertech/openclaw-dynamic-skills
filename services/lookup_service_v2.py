@@ -114,6 +114,7 @@ class SkillResult(BaseModel):
     risk_level: int
     tags: List[str]
     similarity_score: Optional[float] = None
+    reinforcement: str = "preferred"  # NEW: prompt reinforcement preference
 
 
 class LookupResponse(BaseModel):
@@ -158,7 +159,8 @@ def keyword_search(query: str, max_skills: int = 2, agent_name: Optional[str] = 
     
     where_clause = " AND ".join(conditions)
     sql = f"""
-        SELECT id, name, description, version, body, risk_level, tags
+        SELECT id, name, description, version, body, risk_level, tags,
+               COALESCE(metadata->>'reinforcement', 'preferred') as reinforcement
         FROM skills
         WHERE status = 'active' AND ({where_clause})
         ORDER BY 
@@ -195,7 +197,8 @@ def semantic_search(query: str, max_skills: int = 2, agent_name: Optional[str] =
     # Cosine similarity search
     sql = f"""
         SELECT id, name, description, version, body, risk_level, tags,
-               1 - (embedding <=> %s::vector(384)) as similarity_score
+               1 - (embedding <=> %s::vector(384)) as similarity_score,
+               COALESCE(metadata->>'reinforcement', 'preferred') as reinforcement
         FROM skills
         WHERE status = 'active' AND embedding IS NOT NULL
         {agent_filter}
@@ -393,7 +396,8 @@ async def lookup_skills(request: LookupRequest, x_api_key: Optional[str] = Heade
             'excerpt': excerpt,
             'risk_level': skill.get('risk_level', 1),
             'tags': skill.get('tags', []),
-            'similarity_score': skill.get('similarity_score')
+            'similarity_score': skill.get('similarity_score'),
+            'reinforcement': skill.get('reinforcement', 'preferred')  # NEW
         })
     
     # Cache
